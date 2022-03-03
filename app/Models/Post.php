@@ -20,6 +20,19 @@ class Post extends Model
 
     protected $with = ['category', 'author'];
 
+    // Scopes
+
+    public function scopeFilter($query, array $filters = [])
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query
+                ->where('title', 'like', "%{$search}%")
+                ->orWhere('body', 'like', "%{$search}%"));
+    }
+
+
+    // Relations
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
