@@ -52,6 +52,8 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+
+                <x-posts.comments :post="$post" />
             </article>
         </main>
     </section>
