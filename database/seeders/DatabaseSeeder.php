@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $users = User::factory(3)->create();
-        $categories = Category::factory(3)->create();
+        $categories = Category::factory(10)->create();
 
-        Post::factory(5)->create(fn() => [
+        Post::factory(50)->create(fn() => [
             'user_id' => $users->random(),
             'category_id' => $categories->random(),
         ]);
